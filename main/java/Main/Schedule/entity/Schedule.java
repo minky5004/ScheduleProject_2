@@ -1,5 +1,6 @@
 package Main.Schedule.entity;
 
+import Main.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

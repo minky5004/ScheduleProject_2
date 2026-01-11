@@ -1,4 +1,4 @@
-package Main.Scehdule.service;
+package Main.Schedule.service;
 
 import Main.Schedule.dto.*;
 import Main.Schedule.entity.Schedule;

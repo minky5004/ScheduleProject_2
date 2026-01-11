@@ -1,7 +1,7 @@
 package Main.Schedule.contoller;
 
 import Main.Schedule.dto.*;
-import Main.Scehdule.service.ScheduleService;
+import Main.Schedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
