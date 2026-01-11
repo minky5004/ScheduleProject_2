@@ -42,7 +42,6 @@ public class ScheduleService {
     // 전체 조회 (작성 유저명을 기준으로 전체 조회)
     @Transactional(readOnly = true)
     public List<ScheduleGetAllResponse> findALl(String author) {
-        // 조회시
         if (author == null) {
             List<Schedule> getSchedules = scheduleRepository.findAll();
 
@@ -92,6 +91,7 @@ public class ScheduleService {
         );
     }
 
+    // 수정 기능
     @Transactional
     public ScheduleUpdateResponse update(Long scheduleId, ScheduleUpdateRequest request) {
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
@@ -110,5 +110,14 @@ public class ScheduleService {
                 schedule.getCreatedAt(),
                 schedule.getModifiedAt()
         );
+    }
+
+    // 삭제 기능
+    @Transactional
+    public void delete(Long scheduleId) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
+                () -> new IllegalStateException("입력하신 정보와 일치하는 일정이 없습니다.")
+        );
+
     }
 }

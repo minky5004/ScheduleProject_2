@@ -1,6 +1,7 @@
 package Main.Schdule.contoller;
 
 import Main.Schdule.dto.*;
+import Main.Schdule.entity.Schedule;
 import Main.Schdule.servuce.ScheduleService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -49,4 +50,10 @@ public class ScheduleController {
 
     }
 
+    @DeleteMapping("/schedules/{scheduleId}")
+    public void delete(
+            @PathVariable Long scheduleId
+    ) {
+        scheduleservice.delete(scheduleId);
+    }
 }
