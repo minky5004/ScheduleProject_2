@@ -1,4 +1,4 @@
-package Main.Schdule.entity;
+package Main.Schedule.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

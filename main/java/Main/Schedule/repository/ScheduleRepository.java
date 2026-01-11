@@ -1,7 +1,6 @@
-package Main.Schdule.repository;
+package Main.Schedule.repository;
 
-import Main.Schdule.entity.Schedule;
-import org.apache.catalina.User;
+import Main.Schedule.entity.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

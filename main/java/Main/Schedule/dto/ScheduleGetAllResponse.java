@@ -1,11 +1,13 @@
-package Main.Schdule.dto;
+package Main.Schedule.dto;
 
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+
+
 @Getter
-public class SchedulePostResponse {
+public class ScheduleGetAllResponse {
 
     private final Long scheduleId; // 일정 id
     private final String author; // 작성 유저명
@@ -14,7 +16,7 @@ public class SchedulePostResponse {
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public SchedulePostResponse(Long scheduleId, String author, String title, String content, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public ScheduleGetAllResponse(Long scheduleId, String author, String title, String content, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.scheduleId = scheduleId;
         this.author = author;
         this.title = title;

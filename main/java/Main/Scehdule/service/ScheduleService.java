@@ -1,10 +1,9 @@
-package Main.Schdule.servuce;
+package Main.Scehdule.service;
 
-import Main.Schdule.dto.*;
-import Main.Schdule.entity.Schedule;
-import Main.Schdule.repository.ScheduleRepository;
+import Main.Schedule.dto.*;
+import Main.Schedule.entity.Schedule;
+import Main.Schedule.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

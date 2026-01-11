@@ -1,4 +1,4 @@
-package Main.Schdule.dto;
+package Main.Schedule.dto;
 
 import lombok.Getter;
 
