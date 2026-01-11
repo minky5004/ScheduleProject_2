@@ -1,8 +1,6 @@
 package Main.Schdule.servuce;
 
-import Main.Schdule.dto.ScheduleGetAllResponse;
-import Main.Schdule.dto.SchedulePostRequest;
-import Main.Schdule.dto.SchedulePostResponse;
+import Main.Schdule.dto.*;
 import Main.Schdule.entity.Schedule;
 import Main.Schdule.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +16,7 @@ public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
 
+    // 일정 등록
     @Transactional
     public SchedulePostResponse  create(SchedulePostRequest request) {
 
@@ -39,6 +38,7 @@ public class ScheduleService {
         );
     }
 
+    // 전체 조회 (작성 유저명을 기준으로 전체 조회)
     @Transactional(readOnly = true)
     public List<ScheduleGetAllResponse> findALl(String author) {
         // 조회시
@@ -58,6 +58,37 @@ public class ScheduleService {
                 ));
             }
         }
-        List<Schedule> getScheduleAuthor = scheduleRepository.findAllByAuthor(author)
+        List<Schedule> getScheduleAuthor = scheduleRepository.findAllByAuthor(author);
+
+        List<ScheduleGetAllResponse> dtos = new ArrayList<>();
+
+        for (Schedule schedule : getScheduleAuthor) {
+            dtos.add(new ScheduleGetAllResponse(
+                    schedule.getScheduleId(),
+                    schedule.getAuthor(),
+                    schedule.getTitle(),
+                    schedule.getContent(),
+                    schedule.getCreatedAt(),
+                    schedule.getModifiedAt()
+            ));
+        }
+        return dtos;
     }
+
+    // 단일 조회 (스케쥴 ID를 통한 단건 조회)
+    @Transactional(readOnly = true)
+    public ScheduleGetResponse findOne(Long scheduleId) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
+                () -> new IllegalStateException("입력하신 정보와 일치하는 일정이 없습니다.")
+        );
+        return new ScheduleGetResponse(
+                schedule.getScheduleId(),
+                schedule.getAuthor(),
+                schedule.getTitle(),
+                schedule.getContent(),
+                schedule.getCreatedAt(),
+                schedule.getModifiedAt()
+        );
+    }
+
 }
