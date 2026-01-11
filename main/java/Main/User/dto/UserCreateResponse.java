@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class UserCreateRespose {
+public class UserCreateResponse {
 
     private final Long userId;
     private final String userName;
@@ -13,7 +13,7 @@ public class UserCreateRespose {
     private final LocalDateTime createAt;
     private final LocalDateTime modifiedAt;
 
-    public UserCreateRespose(Long userId, String userName, String email, LocalDateTime createAt, LocalDateTime modifiedAt) {
+    public UserCreateResponse(Long userId, String userName, String email, LocalDateTime createAt, LocalDateTime modifiedAt) {
         this.userId = userId;
         this.userName = userName;
         this.email = email;

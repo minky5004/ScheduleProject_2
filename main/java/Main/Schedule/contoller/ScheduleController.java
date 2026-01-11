@@ -39,6 +39,7 @@ public class ScheduleController {
         return ResponseEntity.status(HttpStatus.OK).body(scheduleservice.findOne(scheduleId));
     }
 
+    // 수정 기능
     @PutMapping("/schedules/{scheduleId}")
     public ResponseEntity<ScheduleUpdateResponse> update(
             @PathVariable Long scheduleId,
@@ -48,6 +49,8 @@ public class ScheduleController {
 
     }
 
+
+    //삭제 기능
     @DeleteMapping("/schedules/{scheduleId}")
     public void delete(
             @PathVariable Long scheduleId

@@ -117,6 +117,6 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
                 () -> new IllegalStateException("입력하신 정보와 일치하는 일정이 없습니다.")
         );
-
+        scheduleRepository.deleteById(scheduleId);
     }
 }
