@@ -4,6 +4,7 @@ import Main.Schdule.dto.*;
 import Main.Schdule.entity.Schedule;
 import Main.Schdule.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -91,4 +92,23 @@ public class ScheduleService {
         );
     }
 
+    @Transactional
+    public ScheduleUpdateResponse update(Long scheduleId, ScheduleUpdateRequest request) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
+                () -> new IllegalStateException("입력하신 정보와 일치하는 일정이 없습니다.")
+        );
+        schedule.update(
+                request.getAuthor(),
+                request.getTitle(),
+                request.getContent()
+        );
+        return new ScheduleUpdateResponse(
+                schedule.getScheduleId(),
+                schedule.getAuthor(),
+                schedule.getTitle(),
+                schedule.getContent(),
+                schedule.getCreatedAt(),
+                schedule.getModifiedAt()
+        );
+    }
 }
