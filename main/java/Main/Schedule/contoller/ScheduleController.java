@@ -2,10 +2,13 @@ package Main.Schedule.contoller;
 
 import Main.Schedule.dto.*;
 import Main.Schedule.service.ScheduleService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -14,6 +17,16 @@ import java.util.List;
 public class ScheduleController {
 
     private final ScheduleService scheduleservice;
+
+    // 로그인 상태 확인
+
+    private void loginSessionCheck(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+
+        if (session == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "로그인 상태가 아닙니다.");
+        }
+    }
 
     // 일정 등록
     @PostMapping("/schedules")

@@ -92,4 +92,22 @@ public class UserService {
         );
         userRepository.deleteById(userId);
     }
+
+    @Transactional
+    public UserLoginResponse login(String email, String userPassword) {
+        User user = userRepository.findByEmail(email).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 유저입니다.")
+        );
+        if (!user.getUserPassword().equals(userPassword)) {
+            throw new IllegalArgumentException("비밀번호가 틀렸습니다");
+        }
+
+        return new UserLoginResponse(
+                user.getUserId(),
+                user.getUserName(),
+                user.getEmail(),
+                user.getCreatedAt(),
+                user.getModifiedAt()
+        );
+    }
 }

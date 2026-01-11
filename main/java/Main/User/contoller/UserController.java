@@ -2,6 +2,8 @@ package Main.User.contoller;
 
 import Main.User.dto.*;
 import Main.User.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    HttpServletRequest httpServletRequest;
 
     @PostMapping("/users")
     public ResponseEntity<UserCreateResponse> save(
@@ -48,6 +51,20 @@ public class UserController {
             @PathVariable Long userId
     ) {
         userService.delete(userId);
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<UserLoginResponse> login(
+            @RequestBody UserLoginRequest request,
+            HttpServletRequest httpServletRequest
+    ){
+        UserLoginResponse LoginRequest = userService.login(request.getEmail(), request.getPassword());
+
+        HttpSession session = httpServletRequest.getSession();
+
+        session.setAttribute("user", request.getEmail());
+
+        return ResponseEntity.status(HttpStatus.OK).body(LoginRequest);
     }
 
 }
